@@ -1,0 +1,8 @@
+import seed from './seed.json';
+export type Person = {nome:string;papel:string;ini:string;dias:number|null;ritmo:number;entregas:number};
+export type Card = {id:string;t:string;tipo:string;dono:string;fase:number;retrab:number;aval:string|null;ajuda:string[];modelo:boolean;estreia?:boolean;priority?:string;due?:string;url?:string;done?:boolean};
+export type Signal = {id:string;pessoa:string;tipo:string;frase:string};
+export type Post = {id:string;para:string;texto:string;modo:'publico'|'privado';grupo:string;createdAt:string};
+export type State = {source:'demo'|'jira';people:Record<string,Person>;types:Record<string,{nome:string;compl:string}>;stages:{n:string;d:string;id?:string}[];cards:Card[];signals:Signal[];feed:Post[];dismissed:number;project?:string;syncedAt?:string};
+export const labels:Record<string,string> = {ausencia:'Tempo sem reconhecimento',acima:'Entrega acima do esperado',referencia:'Trabalho virou referência',estreia:'Primeira entrega desse tipo',complexa:'Entrega de alta complexidade',ajuda:'Ajudou um colega',pico:'Evolução do próprio ritmo',volume:'Volume de entregas',conclusao:'Entrega concluída'};
+export function initialState():State {return {...structuredClone(seed),cards:seed.cards.map(c=>({...c,id:String(c.id)})),source:'demo',feed:[],dismissed:0,signals:[{id:'s1',pessoa:'sofia',tipo:'ausencia',frase:'Validou 7 entregas nos últimos 45 dias e está há 97 dias sem reconhecimento.'},{id:'s2',pessoa:'lara',tipo:'ausencia',frase:'Está há 58 dias sem reconhecimento, com entregas constantes.'},{id:'s3',pessoa:'bia',tipo:'estreia',frase:'Concluiu uma funcionalidade em tela existente pela primeira vez.'},{id:'s4',pessoa:'tiago',tipo:'acima',frase:'Teve a troca de autenticação avaliada acima do esperado.'}]};}

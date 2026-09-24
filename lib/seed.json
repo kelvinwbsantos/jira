@@ -1,0 +1,174 @@
+{
+  "people": {
+    "lara": {
+      "nome": "Lara Pontes",
+      "papel": "Back-end",
+      "ini": "LP",
+      "dias": 58,
+      "ritmo": 3,
+      "entregas": 0
+    },
+    "rafa": {
+      "nome": "Rafael Duarte",
+      "papel": "Front-end",
+      "ini": "RD",
+      "dias": 6,
+      "ritmo": 4,
+      "entregas": 0
+    },
+    "bia": {
+      "nome": "Beatriz Nunes",
+      "papel": "Front-end",
+      "ini": "BN",
+      "dias": 31,
+      "ritmo": 2,
+      "entregas": 0
+    },
+    "tiago": {
+      "nome": "Tiago Moraes",
+      "papel": "Back-end",
+      "ini": "TM",
+      "dias": 14,
+      "ritmo": 4,
+      "entregas": 0
+    },
+    "sofia": {
+      "nome": "Sofia Andrade",
+      "papel": "QA",
+      "ini": "SA",
+      "dias": 97,
+      "ritmo": 3,
+      "entregas": 0
+    }
+  },
+  "types": {
+    "migracao": {
+      "nome": "Mudança com migração de dados",
+      "compl": "alta"
+    },
+    "integra": {
+      "nome": "Integração com serviço externo",
+      "compl": "alta"
+    },
+    "feature": {
+      "nome": "Funcionalidade em tela existente",
+      "compl": "media"
+    },
+    "regra": {
+      "nome": "Ajuste de regra de negócio",
+      "compl": "media"
+    },
+    "bug": {
+      "nome": "Correção de bug reportado",
+      "compl": "media"
+    },
+    "copy": {
+      "nome": "Ajuste de texto ou layout",
+      "compl": "baixa"
+    }
+  },
+  "stages": [
+    {
+      "n": "Refinamento",
+      "d": "escopo e critérios"
+    },
+    {
+      "n": "Em desenvolvimento",
+      "d": "código sendo escrito"
+    },
+    {
+      "n": "Code review",
+      "d": "revisão por outra pessoa"
+    },
+    {
+      "n": "QA",
+      "d": "teste da funcionalidade"
+    },
+    {
+      "n": "Pronto para deploy",
+      "d": "entregue"
+    }
+  ],
+  "cards": [
+    {
+      "id": 1,
+      "t": "Exportar relatório de vendas em CSV",
+      "tipo": "feature",
+      "dono": "rafa",
+      "fase": 1,
+      "retrab": 0,
+      "aval": null,
+      "ajuda": [],
+      "modelo": false
+    },
+    {
+      "id": 2,
+      "t": "Migrar tabela de pedidos para o novo schema",
+      "tipo": "migracao",
+      "dono": "tiago",
+      "fase": 1,
+      "retrab": 1,
+      "aval": null,
+      "ajuda": [],
+      "modelo": false
+    },
+    {
+      "id": 3,
+      "t": "Integrar cobrança com o gateway Pagio",
+      "tipo": "integra",
+      "dono": "lara",
+      "fase": 2,
+      "retrab": 0,
+      "aval": null,
+      "ajuda": [],
+      "modelo": false
+    },
+    {
+      "id": 4,
+      "t": "Filtro de período na listagem de clientes",
+      "tipo": "feature",
+      "dono": "bia",
+      "fase": 3,
+      "retrab": 0,
+      "aval": "esperado",
+      "ajuda": [],
+      "modelo": false,
+      "estreia": true
+    },
+    {
+      "id": 5,
+      "t": "Corrigir desconto em pedidos recorrentes",
+      "tipo": "bug",
+      "dono": "lara",
+      "fase": 0,
+      "retrab": 0,
+      "aval": null,
+      "ajuda": [],
+      "modelo": false
+    },
+    {
+      "id": 6,
+      "t": "Revisar textos da tela de onboarding",
+      "tipo": "copy",
+      "dono": "bia",
+      "fase": 0,
+      "retrab": 0,
+      "aval": null,
+      "ajuda": [],
+      "modelo": false
+    },
+    {
+      "id": 7,
+      "t": "Trocar autenticação por tokens de sessão curta",
+      "tipo": "migracao",
+      "dono": "tiago",
+      "fase": 4,
+      "retrab": 0,
+      "aval": "acima",
+      "ajuda": [
+        "lara"
+      ],
+      "modelo": false
+    }
+  ]
+}
