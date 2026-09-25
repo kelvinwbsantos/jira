@@ -20,9 +20,14 @@ npm run build
 npm start
 ```
 
+## Apresentar o protótipo
+
+Siga o [roteiro de demonstração de 6 minutos](docs/roteiro-demonstracao.md), com falas, cliques, versão curta e correspondência com o DRS. Na tela inicial, use **Explorar gatilhos** para começar. As simulações são isoladas e repetíveis; os sinais na seção “Agora, no seu espaço” pertencem à sessão e permitem abrir o reconhecimento diretamente.
+
 ## Telas e interações
 
-- **Quadro:** colunas do processo, busca, responsáveis, tipos e sinais. No modo demonstração, avanço com avaliação de review e indicação de ajuda na conclusão; marcar entregas como referência.
+- **Gatilhos:** sete situações explicadas por evento, regra e motivo; simulações com as regras de domínio; sinais da sessão com filtros; cinco prévias dos gatilhos previstos no DRS, explicitamente identificadas como não automatizadas.
+- **Quadro:** abertura com resumo de sinais e pessoas; destaque imediato dos novos sinais após uma ação; colunas do processo, busca, responsáveis, tipos e sinais. No modo demonstração, avanço com avaliação de review e indicação de ajuda na conclusão; marcar entregas como referência.
 - **Reconhecer:** fila de até três pessoas por tempo conhecido sem reconhecimento, dispensa de sugestão e registro de mensagem pública ou particular.
 - **Mural:** reconhecimentos públicos da sessão.
 - **Pessoas:** lista, perfil, reconhecimentos e entregas concluídas.
@@ -77,8 +82,8 @@ Ao trocar o projeto importado, o espaço e seus reconhecimentos anteriores são 
 ## Validação executada
 
 - Compilação de produção (`npm run build`) e checagem TypeScript concluídas.
-- 9 testes de domínio/segurança: conclusão e ajuda, idempotência, validação de ações, reconhecimento particular, importação Jira sem fatos inventados, separação entre projetos, criptografia autenticada e proteção de origem.
-- 3 testes de navegador Chromium: fluxo de reconhecimento com persistência, isolamento entre sessões e navegação/busca/tema em viewport móvel de 390px.
+- 11 testes de domínio/segurança: simulações isoladas dos sete gatilhos, colaboração sem acúmulo de sinais, conclusão e ajuda, idempotência, validação de ações, reconhecimento particular, importação Jira sem fatos inventados, separação entre projetos, criptografia autenticada e proteção de origem.
+- 5 testes de navegador Chromium: exploração dos gatilhos sem alterar a sessão, layout dos gatilhos em desktop e celular, fluxo de reconhecimento com persistência, isolamento entre sessões e navegação/busca/tema em viewport móvel de 390px.
 - OAuth contra uma conta Atlassian real ainda não foi validado, pois as credenciais não foram fornecidas. Testes de importação utilizam respostas de exemplo.
 
 Para repetir os testes de navegador, deixe `npm run dev` em outro terminal e execute:

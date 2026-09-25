@@ -1,4 +1,38 @@
 import { test,expect } from '@playwright/test';
+test('gatilhos: simulação isolada e reconhecimento de um sinal da sessão',async({page})=>{
+ await page.goto('/');
+ await page.getByRole('button',{name:'Explorar gatilhos'}).click();
+ await expect(page.getByRole('heading',{name:'Quem ajudou também aparece'})).toBeVisible();
+ const before=(await (await page.request.get('/api/state')).json()).state;
+ await page.getByRole('button',{name:'Concluir com ajuda de Lara'}).click();
+ const result=page.locator('.simulation-result');
+ await expect(result).toContainText('3 SINAIS NO EXEMPLO');
+ await expect(result.locator('.highlighted')).toContainText('Lara Pontes');
+ await expect(result.locator('.highlighted')).toContainText('Ajudou um colega');
+ const after=(await (await page.request.get('/api/state')).json()).state;
+ expect(after).toEqual(before);
+ await page.getByRole('button',{name:'Complexidade Entrega de alta complexidade'}).click();
+ await page.getByRole('button',{name:'Concluir migração'}).click();
+ await expect(result.locator('.highlighted')).toContainText('Tiago Moraes');
+ await page.getByLabel('Filtrar por gatilho').selectOption('ausencia');
+ await expect(page.locator('.signal-card')).toHaveCount(2);
+ const sofia=page.locator('.signal-card').filter({hasText:'Sofia Andrade'});
+ await sofia.getByRole('button',{name:'Reconhecer contribuição'}).click();
+ await expect(page.getByRole('heading',{name:'Reconhecer Sofia'})).toBeVisible();
+ await expect(page.locator('.compose')).toContainText('97 dias');
+});
+
+test('gatilhos em celular: exemplos e sinais cabem na tela',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto('/');
+ await page.getByRole('button',{name:'Gatilhos',exact:true}).click();
+ await page.getByRole('button',{name:'Concluir com ajuda de Lara'}).click();
+ await expect(page.locator('.simulation-result')).toContainText('Lara Pontes');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();
+ await page.screenshot({path:'test-results/gatilhos-mobile.png',fullPage:true});
+ await page.setViewportSize({width:1440,height:1000});
+ await page.screenshot({path:'test-results/gatilhos-desktop.png',fullPage:true});
+});
+
 test('fluxo completo: atividade, ajuda, reconhecimento e persistência',async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/');await expect(page.getByRole('heading',{name:'Quadro do time de desenvolvimento'})).toBeVisible();
@@ -9,6 +43,8 @@ test('fluxo completo: atividade, ajuda, reconhecimento e persistência',async({p
  await page.getByRole('button',{name:'Marcar como pronta'}).click();
  await expect(page.getByRole('dialog')).not.toBeVisible();
  await expect(card.getByText('Ajuda de Lara Pontes')).toBeVisible();
+ await expect(page.getByRole('region',{name:'Novos sinais gerados'})).toContainText('3 novos sinais gerados');
+ await expect(page.getByRole('region',{name:'Novos sinais gerados'})).toContainText('Ajudou um colega');
  await card.getByRole('button',{name:'Marcar como referência'}).click();
  await expect(card.getByText('implementação de referência')).toBeVisible();
  await page.getByRole('button',{name:'Reconhecer',exact:false}).first().click();
